@@ -1,0 +1,215 @@
+" not vi compatible
+set nocompatible 
+
+
+"------------------
+" Syntax and indent
+"------------------
+
+" Turn on syntax highlighting.
+syntax on
+" show matching braces when text indicator is over them
+set showmatch 
+" set to force 256 colors
+set t_Co=256
+set background=light
+" enable file type detection
+filetype plugin indent on
+set autoindent
+
+
+"---------------------
+" Basic editing config
+"---------------------
+
+" chang gvim work vim powershell
+" set shell=D:\Git\Git\git-bash.exe
+" set shell=C:\Users\hzqfxm\AppData\Local\Microsoft\WindowsApps\Microsoft.PowerShell_8wekyb3d8bbwe\pwsh.exe
+" set shell=git-bash
+" set shell=ubuntu2204.exe
+" disable startup message
+autocmd GUIEnter * set shortmess=atI
+" Show line numbers.
+set number
+set relativenumber
+" incremental search (as string is being typed)
+set incsearch
+" highlight searc
+set hls
+" hide mode
+" set noshowmode
+set scrolloff=5
+" Always show the status line at the bottom, even if you only have one window open.
+set laststatus=2
+" backspace over anything.
+set backspace=indent,eol,start
+" automatically set current directory to directory of last opened file
+set autochdir
+" Automatically update files when files are modified externally.
+set autoread
+" allow auto-hiding of edited buffers
+set hidden
+" more history
+set history=8192
+" use 4 spaces instead of tabs during formatting
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+" smart case-sensitive search
+set ignorecase
+set smartcase
+" enable mouse mode (scrolling, selection, etc)
+set mouse=a
+" disable folding by default
+set nofoldenable
+set clipboard=unnamed,unnamedplus
+" set backspace key available
+set backspace=2 
+" word wrap
+set wrap 	
+" Whole word wrap, used with word wrap
+set linebreak 		
+set smartindent
+
+
+"--------------------
+" Misc configurations
+"--------------------
+
+" unbind keys
+map <C-a> <Nop>
+map <C-x> <Nop>
+nmap Q <Nop>
+" Disable audible bell because it's annoying.
+set noerrorbells visualbell t_vb=
+" toggle relative numbering
+nnoremap <C-n> :set rnu!<CR>
+" No arrow keys --- force yourself to use the home row
+nnoremap <Left>  :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up>    :echoe "Use k"<CR>
+nnoremap <Down>  :echoe "Use j"<CR>
+" ...and in insert mode
+inoremap <Left>  <ESC>:echoe "Use h"<CR>
+inoremap <Right> <ESC>:echoe "Use l"<CR>
+inoremap <Up>    <ESC>:echoe "Use k"<CR>
+inoremap <Down>  <ESC>:echoe "Use j"<CR>
+" Brackets auto-completion
+" inoremap ( ()<Esc>i
+" inoremap [ []<Esc>i
+inoremap {<CR> {<CR>}<Esc>ko
+" <RightMouse>
+" inoremap " ""<Esc>i
+
+" Comma mapping, exit brackets and quotes
+imap ,, <Esc>la
+nnoremap z i<BS><Esc>l
+" Pressing 0 in normal mode points to the first letter.
+nnoremap 0 0w
+vnoremap <C-S-Y> "+y 
+inoremap <C-S-P> <Esc>"+pa
+vnoremap <C-S-P> "+p
+nnoremap <C-S-P> "+p
+" open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+" NERDTree
+"=====================
+" open NERDTree
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+" vim-cpp-modern
+" ====================
+" Enable highlighting of C++11 attributes
+let g:cpp_attributes_highlight = 1
+" Highlight struct/class member variables (affects both C and C++ files)
+let g:cpp_member_highlight = 1
+" Put all standard C and C++ keywords under Vim's highlight group 'Statement'
+" (affects both C and C++ files)
+let g:cpp_simple_highlight = 1
+
+" C/C++
+" =====================
+" in normal mode F2 will save the file
+nmap <F2> :w<CR>
+" in insert mode F2 will exit insert, save, enters insert again
+imap <F2> <ESC>:w<CR>i
+" switch between header/source with F4
+map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
+" AsyncRun
+" =====================
+" automatically open quickfix window when AsyncRun command is executed
+" set the quickfix window 6 lines height.
+let g:asyncrun_open = 6
+
+" ring the bell to notify you job finished
+let g:asyncrun_bell = 1
+
+" F10 to toggle quickfix window
+nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
+
+"--------------------
+" interface style
+"--------------------
+
+" window size
+set lines=30 columns=100
+" window position
+winpos 300 100
+" Cancel automatic folding of code blocks
+set nofoldenable
+" set guifont=Berkeley\ Mono:h16	
+set guifont=MesloLGL_NF:h16
+colorscheme morning
+" Toggle Menu and Toolbar 	
+set guioptions-=m
+set guioptions-=T
+" Show tab bar
+set showtabline=2
+" Display filename: total lines, total characters
+set statusline=%=[Line:%l/%L,Column:%c][%p%%]
+" During editing, a status line showing the cursor position in the lower right corner
+set ruler
+" set the menu & the message to English
+set langmenu=en_US
+let $LANG= 'en_US'
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+
+" set encoding=utf-8
+" set termencoding=utf-8
+" set fileencoding=utf-8
+" set fileencodings=ucs-bom,utf-8,chinese,cp936
+ 
+set ai! "设置自动缩进
+
+" hi MatchParen ctermbg=DarkRed guibg=lightblue  
+
+
+
+"---------------------
+" Plugin configuration
+"---------------------
+
+
+call plug#begin('D:\Vim\plugged')
+
+Plug 'preservim/nerdtree'
+Plug 'tomtom/tcomment_vim'
+" Plug 'tpope/vim-commentary'
+"Plug 'preservim/nerdcommenter'
+Plug 'bfrg/vim-cpp-modern'
+Plug 'cormacrelf/vim-colors-github'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'skywind3000/asyncrun.vim'
+
+call plug#end()
+
+
+colorscheme github
