@@ -8,6 +8,8 @@ set nocompatible
 
 " Turn on syntax highlighting.
 syntax on
+" see above and below the cursor. 
+set scrolloff=10
 " show matching braces when text indicator is over them
 set showmatch 
 " set to force 256 colors
