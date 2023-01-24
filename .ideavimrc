@@ -1,0 +1,53 @@
+" 显示当前模式
+set showmode
+
+" 共享系统粘贴板
+set clipborad=unamed
+
+" 关闭兼容vi
+set nocompatible
+
+" 设置命令历史记录条数
+set history=2000
+
+" 开启语法高亮功能
+syntax enable
+
+" 允许用指定语法高亮配色方案替换默认方案
+syntax on
+
+set rnu
+
+" 模式查找时智能忽略大小写
+set smartcase
+
+
+" 将制表符扩展为空格
+set expandtab
+
+" 设置编辑时制表符占用空格数
+set tabstop=8
+
+" 设置格式化时制表符占用空格数
+set shiftwidth=4
+
+" 让 vim 把连续数量的空格视为一个制表符
+set softtabstop=4
+
+" 中英文
+set keep-english-in-normal-and-restore-in-insert
+set clipboard=unnamed,unnamedplus
+nnoremap z i<BS><Esc>l
+" No arrow keys --- force yourself to use the home row
+nnoremap <Left>  :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up>    :echoe "Use k"<CR>
+nnoremap <Down>  :echoe "Use j"<CR>
+" ...and in insert mode
+inoremap <Left>  <ESC>:echoe "Use h"<CR>
+inoremap <Right> <ESC>:echoe "Use l"<CR>
+inoremap <Up>    <ESC>:echoe "Use k"<CR>
+inoremap <Down>  <ESC>:echoe "Use j"<CR>
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
